@@ -3,33 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-Time Data Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <header class="dashboard-header">
-        <h1>Real-Time Data Dashboard</h1>
-        <button id="refresh-button">Refresh Data</button>
-    </header>
-
-    <main class="dashboard-grid">
-        <div class="metric-card">
-            <h2 class="card-title">Total Users</h2>
-            <p class="metric-value" id="total-users">Loading...</p>
+    <div class="dashboard-container">
+        <!-- Side Panel -->
+        <div class="side-panel">
+            <div class="store-header">
+                <div class="store-icon"></div>
+                <div class="store-name">Store name</div>
+                <div class="dropdown-icon"></div>
+            </div>
+            <div class="menu-section">
+                <div class="menu-item active">
+                    <div class="menu-icon"></div>
+                    <span>Home</span>
+                </div>
+                <div class="menu-items-group">
+                    <div class="menu-item">
+                        <div class="menu-icon"></div>
+                        <span>Payments</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon"></div>
+                        <span>Balances</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon"></div>
+                        <span>Customers</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon"></div>
+                        <span>Connected accounts</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon"></div>
+                        <span>Products</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon"></div>
+                        <span>Reports</span>
+                    </div>
+                </div>
+                <div class="menu-items-group">
+                    <div class="menu-item">
+                        <div class="menu-icon"></div>
+                        <span>Developers</span>
+                    </div>
+                    <div class="menu-item toggle-item">
+                        <div class="toggle-switch"></div>
+                        <span>View test data</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon"></div>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="chart-card">
-            <h2 class="card-title">User Sign-ups (Last 7 Days)</h2>
-            <canvas id="myChart"></canvas>
-        </div>
+        <div class="main-content">
+            
+            <!-- Header Section -->
+            <div class="header-section">
+                <div class="search-bar">
+                    <div class="search-icon"></div>
+                    <div class="search-text">Search...</div>
+                </div>
+                <div class="header-icons">
+                    <div class="icon"></div>
+                    <div class="icon"></div>
+                    <div class="icon"></div>
+                </div>
+            </div>
+            <div class="divider"></div>
 
-        <div class="metric-card">
-            <h2 class="card-title">Failed Logins Today</h2>
-            <p class="metric-value" id="failed-logins">Loading...</p>
-        </div>
-    </main>
+            <!-- Today's Stats Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>Today</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="stats-container">
+                    <div class="chart-section">
+                        <div class="stat-row">
+                            <div class="stat-item">
+                                <div class="stat-label">
+                                    <span>Gross volume</span>
+                                    <div class="info-icon"></div>
+                                </div>
+                                <div class="stat-value">€1,452.25</div>
+                                <div class="stat-time">04:48</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">
+                                    <span>Yesterday</span>
+                                    <div class="info-icon"></div>
+                                </div>
+                                <div class="stat-value yesterday">€1,253.61</div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <!-- Chart visualization would go here -->
+                            <div class="chart-lines"></div>
+                            <div class="chart-current"></div>
+                            <div class="chart-point"></div>
+                            <div class="chart-time-labels">
+                                <span>00:00</span>
+                                <span class="current-time">Now, 12:00</span>
+                                <span>23:59</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-divider"></div>
+                    <div class="balance-section">
+                        <div class="balance-item">
+                            <div class="balance-header">
+                                <span>EUR Balance</span>
+                                <a href="#" class="view-link">View</a>
+                            </div>
+                            <div class="balance-value">€3,582.31</div>
+                            <div class="balance-description">Estimated future payouts</div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="balance-item">
+                            <div class="balance-header">
+                                <span>EUR Balance</span>
+                                <a href="#" class="view-link">View</a>
+                            </div>
+                            <div class="balance-value">€4,130.99</div>
+                            <div class="balance-description">Deposited on 8 Jun</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
 
-    <script src="app.js"></script>
+            
+
+            <!-- Reports Overview Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>Reports overview</h2>
+                    <div class="report-controls">
+                        <div class="control-group">
+                            <div class="dropdown">
+                                <span>Last 12 months</span>
+                                <div class="dropdown-icon"></div>
+                            </div>
+                            <span class="compare-text">compared to</span>
+                            <div class="dropdown">
+                                <span>Previous period</span>
+                                <div class="dropdown-icon"></div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="dropdown">
+                                <span>Monthly</span>
+                                <div class="dropdown-icon"></div>
+                            </div>
+                            <button class="edit-button">
+                                <div class="edit-icon"></div>
+                                <span>Edit charts</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Charts -->
+                <div class="report-charts">
+                    <div class = "divider"></div>
+                    <!-- First Row of Charts -->
+                    <div class="chart-row">
+                        <div class="report-chart">
+                            <div class="chart-header">
+                                <div class="chart-title">
+                                    <span>Gross volume</span>
+                                    <div class="info-icon"></div>
+                                    <div class="percentage-tag positive">3.2%</div>
+                                </div>
+                                <a href="#" class="view-link">View</a>
+                            </div>
+                            <div class="chart-values">
+                                <span class="current-value">€4,130.99</span>
+                                <span class="compare-value">€1,253.92</span>
+                            </div>
+                            <div class="chart-visualization">
+                                <!-- Chart visualization would go here -->
+                            </div>
+                            <div class="chart-time-labels">
+                                <span>Aug 2020</span>
+                                <span>Jul 2021</span>
+                            </div>
+                        </div>
+                        <div class="vertical-divider"></div>
+                        <div class="report-chart">
+                            <div class="chart-header">
+                                <div class="chart-title">
+                                    <span>Gross volume</span>
+                                    <div class="info-icon"></div>
+                                    <div class="percentage-tag positive">3.2%</div>
+                                </div>
+                                <a href="#" class="view-link">View</a>
+                            </div>
+                            <div class="chart-values">
+                                <span class="current-value">€4,130.99</span>
+                                <span class="compare-value">€1,253.92</span>
+                            </div>
+                            <div class="chart-visualization">
+                                <!-- Chart visualization would go here -->
+                            </div>
+                            <div class="chart-time-labels">
+                                <span>Aug 2020</span>
+                                <span>Jul 2021</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "divider"></div>
+                    <!-- Second Row of Charts -->
+                    <div class="chart-row">
+                        <div class="report-chart">
+                            <div class="chart-header">
+                                <div class="chart-title">
+                                    <span>Gross volume</span>
+                                    <div class="info-icon"></div>
+                                    <div class="percentage-tag positive">3.2%</div>
+                                </div>
+                                <a href="#" class="view-link">View</a>
+                            </div>
+                            <div class="chart-values">
+                                <span class="current-value">€4,130.99</span>
+                                <span class="compare-value">€1,253.92</span>
+                            </div>
+                            <div class="chart-visualization">
+                                <!-- Chart visualization would go here -->
+                            </div>
+                            <div class="chart-time-labels">
+                                <span>Aug 2020</span>
+                                <span>Jul 2021</span>
+                            </div>
+                        </div>
+                        <div class="vertical-divider"></div>
+                        <div class="report-chart">
+                            <div class="chart-header">
+                                <div class="chart-title">
+                                    <span>Gross volume</span>
+                                    <div class="info-icon"></div>
+                                    <div class="percentage-tag positive">3.2%</div>
+                                </div>
+                                <a href="#" class="view-link">View</a>
+                            </div>
+                            <div class="chart-values">
+                                <span class="current-value">€4,130.99</span>
+                                <span class="compare-value">€1,253.92</span>
+                            </div>
+                            <div class="chart-visualization">
+                                <!-- Chart visualization would go here -->
+                            </div>
+                            <div class="chart-time-labels">
+                                <span>Aug 2020</span>
+                                <span>Jul 2021</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = "divider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="src/app.js"></script>
 </body>
 </html>
