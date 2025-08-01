@@ -10,7 +10,7 @@ function OrderSummary({ products }: OrderSummaryProps) {
   const { cart } = useCart();
 
   return (
-    <div className="order-summary-checkout">
+    <div className="order-summary">
       {cart.map(cartItem => (
         <CartItemCard
           key={cartItem.productId}

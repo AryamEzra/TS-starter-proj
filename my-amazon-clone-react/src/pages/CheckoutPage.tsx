@@ -6,6 +6,9 @@ import OrderSummary from '../components/OrderSummary';
 import PaymentSummary from '../components/PaymentSummary';
 import { Link } from 'react-router-dom';
 
+import '../styles/pages/checkout/checkout-header.css';
+import '../styles/pages/checkout/checkout.css';
+
 function CheckoutPage() {
   const { cartQuantity } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
@@ -45,7 +48,7 @@ function CheckoutPage() {
           </div>
         </div>
 
-      <div className="main">
+      <div className="main-checkout">
         <div className="page-title">Review your order</div>
 
         <div className="checkout-grid">

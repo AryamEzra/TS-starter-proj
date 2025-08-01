@@ -28,10 +28,10 @@ function CartItemCard({ cartItem, products }: CartItemCardProps) {
       </div>
 
       <div className="cart-item-details-grid">
-        <img className="product-image" src={matchingProduct.image} />
+        <img className="product-image-checkout" src={matchingProduct.image} />
 
         <div className="cart-item-details">
-          <div className="product-name">{matchingProduct.name}</div>
+          <div className="product-name-checkout">{matchingProduct.name}</div>
           <div className="product-price">${formatCurrency(matchingProduct.priceCents)}</div>
           <div className="product-quantity">
             <span>

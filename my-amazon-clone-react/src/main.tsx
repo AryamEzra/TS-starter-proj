@@ -6,7 +6,6 @@ import './styles/shared/general.css';
 import './styles/shared/amazon-header.css';
 import './styles/pages/amazon.css';
 
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
