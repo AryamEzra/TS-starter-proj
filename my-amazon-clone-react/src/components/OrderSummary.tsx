@@ -16,6 +16,7 @@ function OrderSummary({ products }: OrderSummaryProps) {
           key={cartItem.productId}
           cartItem={cartItem}
           products={products}
+          styles = {{}}
         />
       ))}
     </div>
