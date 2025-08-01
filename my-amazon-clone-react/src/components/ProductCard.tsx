@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import type { Product } from '../types';
 import { useCart } from '../context/CartContext';
-import { formatCurrency } from '../utils/money'; // We need to create this file
+import { formatCurrency } from '../utils/money';
 
-// Define the "props" (properties) that this component expects to receive
 interface ProductCardProps {
   product: Product;
 }
 
 function ProductCard({ product }: ProductCardProps) {
-  const { addToCart } = useCart(); // Get the addToCart function from our context
+  const { addToCart } = useCart(); 
   const [quantity, setQuantity] = useState(1);
   const [addedMessageVisible, setAddedMessageVisible] = useState(false);
 
