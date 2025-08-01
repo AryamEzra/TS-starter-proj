@@ -4,9 +4,7 @@ import { fetchProducts } from '../services/api';
 import { useCart } from '../context/CartContext';
 import OrderSummary from '../components/OrderSummary';
 import PaymentSummary from '../components/PaymentSummary';
-
-import '../styles/pages/checkout/checkout.css';
-import '../styles/pages/checkout/checkout-header.css';
+import { Link } from 'react-router-dom';
 
 function CheckoutPage() {
   const { cartQuantity } = useCart();
@@ -29,23 +27,23 @@ function CheckoutPage() {
   return (
     <>
       <div className="checkout-header">
-        <div className="header-content">
-          <div className="checkout-header-left-section">
-            <a href="amazon.html">
-              <img className="amazon-logo" src="/images/amazon-logo.png" />
-              <img className="amazon-mobile-logo" src="/images/amazon-mobile-logo.png" />
-            </a>  
-          </div>
+          <div className="header-content">
+            <div className="checkout-header-left-section">
+              <Link to="/">
+                <img className="amazon-logo" src="/images/amazon-logo.png" />
+                <img className="amazon-mobile-logo" src="/images/amazon-mobile-logo.png" />
+              </Link>  
+            </div>
 
-          <div className="checkout-header-middle-section">
-            Checkout (<a className="return-to-home-link" href="amazon.html">{cartQuantity} items</a>)
-          </div>
+            <div className="checkout-header-middle-section">
+              Checkout (<Link className="return-to-home-link" to="/">{cartQuantity} items</Link>)
+            </div>
 
-          <div className="checkout-header-right-section">
-            <img src="/images/icons/checkout-lock-icon.png" />
+            <div className="checkout-header-right-section">
+              <img src="/images/icons/checkout-lock-icon.png" />
+            </div>
           </div>
         </div>
-      </div>
 
       <div className="main">
         <div className="page-title">Review your order</div>
