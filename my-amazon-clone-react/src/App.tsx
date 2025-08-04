@@ -3,7 +3,8 @@ import { CartProvider } from './context/CartContext';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import CheckoutPage from './pages/CheckoutPage'; 
-// import OrdersPage from './pages/OrdersPage';
+import OrdersPage from './pages/OrdersPage';
+import TrackingPage from './pages/TrackingPage';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
-          {/* <Route path="/orders" element={<OrdersPage />} /> */}
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/tracking" element={<TrackingPage />} />
+
         </Routes>
       </BrowserRouter>
     </CartProvider>

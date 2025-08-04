@@ -25,3 +25,16 @@ export interface DeliveryOption {
   deliveryDays: number;
   priceCents: number;
 }
+
+export interface Order {
+  id:string;
+  orderTime: string;
+  totalCostCents: number;
+  products: OrderProduct[];
+}
+
+export interface OrderProduct {
+  productId: string;
+  quantity: number;
+  estimatedDeliveryTime: string;
+}
