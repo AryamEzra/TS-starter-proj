@@ -63,7 +63,7 @@ function PaymentSummary({ products }: PaymentSummaryProps) {
   };
 
   return (
-    <div className="border border-gray-200 rounded p-4">
+    <div className="border border-gray-200 rounded p-4 h-fit max-h-[calc(100vh-120px)] overflow-y-auto">
       <div className="font-bold text-lg mb-3">
         Order Summary
       </div>
