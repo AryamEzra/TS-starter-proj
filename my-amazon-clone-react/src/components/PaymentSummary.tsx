@@ -63,37 +63,37 @@ function PaymentSummary({ products }: PaymentSummaryProps) {
   };
 
   return (
-    <div className="payment-summary">
-      <div className="payment-summary-title">
+    <div className="border border-gray-200 rounded p-4">
+      <div className="font-bold text-lg mb-3">
         Order Summary
       </div>
-      <div className="payment-summary-row">
+      <div className="grid grid-cols-2 mb-2">
         <div>Items ({cartQuantity}):</div>
-        <div className="payment-summary-money">${formatCurrency(productPriceCents)}</div>
+        <div className="text-right">${formatCurrency(productPriceCents)}</div>
       </div>
 
-      <div className="payment-summary-row">
+      <div className="grid grid-cols-2 mb-2">
         <div>Shipping & handling:</div>
-        <div className="payment-summary-money">${formatCurrency(shippingPriceCents)}</div>
+        <div className="text-right">${formatCurrency(shippingPriceCents)}</div>
       </div>
 
-      <div className="payment-summary-row subtotal-row">
+      <div className="grid grid-cols-2 mb-2 pt-2 border-t border-gray-200">
         <div>Total before tax:</div>
-        <div className="payment-summary-money">${formatCurrency(totalBeforeTaxCents)}</div>
+        <div className="text-right">${formatCurrency(totalBeforeTaxCents)}</div>
       </div>
 
-      <div className="payment-summary-row">
+      <div className="grid grid-cols-2 mb-2">
         <div>Estimated tax (10%):</div>
-        <div className="payment-summary-money">${formatCurrency(taxCents)}</div>
+        <div className="text-right">${formatCurrency(taxCents)}</div>
       </div>
 
-      <div className="payment-summary-row total-row">
+      <div className="grid grid-cols-2 mb-4 pt-2 border-t border-gray-200 font-bold text-lg text-red-700">
         <div>Order total:</div>
-        <div className="payment-summary-money">${formatCurrency(totalCents)}</div>
+        <div className="text-right">${formatCurrency(totalCents)}</div>
       </div>
 
       <button 
-        className="place-order-button button-primary"
+        className="w-full py-3 bg-yellow-400 hover:bg-yellow-500 border border-yellow-500 text-black font-medium rounded-lg shadow-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={handlePlaceOrder}
         disabled={cart.length === 0 || isPlacingOrder}
       >

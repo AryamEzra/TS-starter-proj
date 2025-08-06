@@ -5,7 +5,6 @@ import { useProducts } from '../hooks/useProducts';
 import Header from '../components/Header';
 import Spinner from '../components/Spinner';
 import type { Order, OrderProduct, Product } from '../types';
-import { fetchOrders } from '../services/api';
 import { dummyOrders } from '../data/dummyOrders';
 
 function TrackingPage() {
@@ -23,8 +22,7 @@ function TrackingPage() {
     const loadTrackingData = async () => {
       if (!orderId || !productId || products.length === 0) return;
       setIsLoading(true);
-      // const allOrders = await fetchOrders();
-      const allOrders = dummyOrders; // Use dummy data for now
+      const allOrders = dummyOrders;
       const foundOrder = allOrders.find(o => o.id === orderId);
 
       if (foundOrder) {

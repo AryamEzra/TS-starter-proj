@@ -6,10 +6,7 @@ import Header from '../components/Header';
 import Spinner from '../components/Spinner';
 import { formatCurrency } from '../utils/money';
 import type { Order, Product } from '../types';
-import { fetchOrders } from '../services/api';
 import { dummyOrders } from '../data/dummyOrders';
-
-
 
 function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -25,17 +22,6 @@ function OrdersPage() {
       setOrders(sortedOrders);
       setOrdersLoading(false);
     }, 500);
-    
-    /*
-    const loadOrders = async () => {
-      setOrdersLoading(true);
-      const fetchedOrders = await fetchOrders();
-      setOrders(fetchedOrders);
-      setOrdersLoading(false);
-    };
-    loadOrders();
-    */
-
   }, []);
 
   const findProductById = (productId: string): Product | undefined => {
@@ -46,30 +32,21 @@ function OrdersPage() {
     return <Spinner />;
   }
 
-  const primaryButtonClasses = "bg-yellow-400 hover:bg-yellow-500 border border-yellow-500 text-black py-2 px-4 rounded-lg shadow-sm transition-colors duration-200";
-  const secondaryButtonClasses = "bg-white hover:bg-gray-50 border border-gray-300 text-black py-2 px-4 rounded-lg shadow-sm transition-colors duration-200";
-
   return (
     <>
       <Header />
-      {/* main */}
       <main className="max-w-4xl mx-auto mt-24 mb-24 px-5">
-        {/* page-title */}
         <div className="font-bold text-2xl mb-6">Your Orders</div>
 
-        {/* orders-grid */}
-        <div className="grid grid-cols-1 gap-y-12">
+        <div className="space-y-6">
           {orders.length === 0 && !ordersLoading ? (
             <div className="border border-gray-300 rounded-lg p-6">You have no past orders.</div>
           ) : (
             orders.map(order => (
-              // order-container (just a grid item)
               <div key={order.id} className="border border-gray-300 rounded-lg">
-                {/* order-header */}
-                <div className="bg-gray-100 p-6 rounded-t-lg border-b border-gray-300 flex flex-col sm:flex-row items-start sm:items-center justify-between">
-                  {/* order-header-left-section */}
-                  <div className="flex flex-col sm:flex-row">
-                    <div className="mb-2 sm:mb-0 sm:mr-12">
+                <div className="bg-gray-100 p-6 rounded-t-lg border-b border-gray-300 flex flex-col sm:flex-row justify-between">
+                  <div className="flex flex-col sm:flex-row gap-8 mb-4 sm:mb-0">
+                    <div>
                       <div className="font-medium">Order Placed:</div>
                       <div>{dayjs(order.orderTime).format('MMMM D, YYYY')}</div>
                     </div>
@@ -78,15 +55,13 @@ function OrdersPage() {
                       <div>${formatCurrency(order.totalCostCents)}</div>
                     </div>
                   </div>
-                  {/* order-header-right-section */}
-                  <div className="mt-4 sm:mt-0 text-left sm:text-right">
+                  <div className="text-left sm:text-right">
                     <div className="font-medium">Order ID:</div>
                     <div className="text-sm break-all">{order.id}</div>
                   </div>
                 </div>
 
-                {/* order-details-grid: Using Tailwind's arbitrary values for precise grid columns */}
-                <div className="p-6 grid grid-cols-1 md:grid-cols-[110px_1fr_220px] gap-x-8 gap-y-10 items-center">
+                <div className="p-6 grid grid-cols-1 md:grid-cols-[110px_1fr_220px] gap-6 md:gap-8 items-center">
                   {order.products.flatMap(orderProduct => {
                     const product = findProductById(orderProduct.productId);
                     if (!product) return [];
@@ -100,15 +75,15 @@ function OrdersPage() {
                         <div className="font-bold">{product.name}</div>
                         <div className="mt-1">Arriving on: {dayjs(orderProduct.estimatedDeliveryTime).format('MMMM D')}</div>
                         <div className="mt-1 mb-2">Quantity: {orderProduct.quantity}</div>
-                        <button className={`${primaryButtonClasses} flex items-center justify-center w-40 h-9`}>
+                        <button className="bg-yellow-400 hover:bg-yellow-500 border border-yellow-500 text-black py-2 px-4 rounded-lg shadow-sm transition-colors duration-200 flex items-center justify-center w-40 h-9">
                           <img className="w-6 mr-3" src="/images/icons/buy-again.png" alt="Buy again" />
                           <span>Buy it again</span>
                         </button>
                       </div>,
 
-                      <div key={`${product.id}-actions`} className="self-start w-full">
+                      <div key={`${product.id}-actions`} className="w-full">
                         <Link to={`/tracking?orderId=${order.id}&productId=${product.id}`}>
-                          <button className={`${secondaryButtonClasses} w-full`}>
+                          <button className="bg-white hover:bg-gray-50 border border-gray-300 text-black py-2 px-4 rounded-lg shadow-sm transition-colors duration-200 w-full">
                             Track package
                           </button>
                         </Link>

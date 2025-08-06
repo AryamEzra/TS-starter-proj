@@ -1,11 +1,18 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
+export const content = [
+  "./src/**/*.{js,ts,jsx,tsx}",
+];
+export const theme = {
+  extend: {
+    colors: {
+      amazon: {
+        DEFAULT: '#131921',
+        light: '#232F3E',
+      },
+    },
   },
-  plugins: [],
-}
+};
+export const plugins = [
+  require('@tailwindcss/forms'),
+  require('@tailwindcss/line-clamp'),
+];

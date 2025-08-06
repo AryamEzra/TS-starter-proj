@@ -10,13 +10,12 @@ function OrderSummary({ products }: OrderSummaryProps) {
   const { cart } = useCart();
 
   return (
-    <div className="order-summary">
+    <div className="space-y-4">
       {cart.map(cartItem => (
         <CartItemCard
           key={cartItem.productId}
           cartItem={cartItem}
           products={products}
-          styles = {{}}
         />
       ))}
     </div>

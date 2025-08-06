@@ -23,37 +23,43 @@ function ProductCard({ product }: ProductCardProps) {
   const getStarsUrl = (stars: number) => `/images/ratings/rating-${stars * 10}.png`;
 
   return (
-    <div className="product-container">
-      <div className="product-image-container">
-        <img className="product-image" src={product.image} />
+    <div className="p-6 border-r border-b border-gray-200 flex flex-col">
+      <div className="flex justify-center items-center h-48 mb-5">
+        <img className="max-w-full max-h-full" src={product.image} alt={product.name} />
       </div>
 
-      <div className="product-name limit-text-to-2-lines">{product.name}</div>
+      <div className="text-base font-medium mb-1 line-clamp-2 h-12">{product.name}</div>
 
-      <div className="product-rating-container">
-        <img className="product-rating-stars" src={getStarsUrl(product.rating.stars)} />
-        <div className="product-rating-count link-primary">{product.rating.count}</div>
+      <div className="flex items-center mb-2">
+        <img className="w-20 mr-1" src={getStarsUrl(product.rating.stars)} alt={`${product.rating.stars} stars`} />
+        <div className="text-blue-600 text-sm cursor-pointer">{product.rating.count}</div>
       </div>
 
-      <div className="product-price">${formatCurrency(product.priceCents)}</div>
+      <div className="font-bold text-lg mb-2">${formatCurrency(product.priceCents)}</div>
 
-      <div className="product-quantity-container">
-        <select value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}>
-          {/* A little trick to generate 10 options */}
+      <div className="mb-4">
+        <select 
+          value={quantity} 
+          onChange={(e) => setQuantity(Number(e.target.value))}
+          className="w-full p-1 bg-gray-100 border border-gray-200 rounded text-sm focus:outline-yellow-400"
+        >
           {[...Array(10)].map((_, i) => (
             <option key={i + 1} value={i + 1}>{i + 1}</option>
           ))}
         </select>
       </div>
 
-      <div className="product-spacer"></div>
+      <div className="flex-1"></div>
 
-      <div className={`added-to-cart ${addedMessageVisible ? 'visible' : ''}`}>
-        <img src="images/icons/checkmark.png" />
+      <div className={`flex items-center text-green-700 text-base mb-2 transition-opacity duration-200 ${addedMessageVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <img className="w-5 mr-1" src="images/icons/checkmark.png" alt="Checkmark" />
         Added
       </div>
 
-      <button className="add-to-cart-button button-primary" onClick={handleAddToCartClick}>
+      <button 
+        className="w-full py-2 bg-yellow-400 hover:bg-yellow-500 border border-yellow-500 rounded-full text-sm font-medium shadow-sm transition-colors"
+        onClick={handleAddToCartClick}
+      >
         Add to Cart
       </button>
     </div>
