@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import type { Product } from '../types';
 import { fetchProducts } from '../services/api';
 import { useCart } from '../context/CartContext';
 import OrderSummary from '../components/OrderSummary';
 import PaymentSummary from '../components/PaymentSummary';
 import { Link } from 'react-router-dom';
+import { useSearch } from '../context/SearchContext';
 
 function CheckoutPage() {
-  const { cartQuantity } = useCart();
+  const { cart, cartQuantity } = useCart();
+  const { activeSearchTerm } = useSearch();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,6 +21,23 @@ function CheckoutPage() {
     }
     loadProducts();
   }, []);
+
+  // Filter products that are in the cart and match search term
+  const filteredCartProducts = useMemo(() => {
+    const cartProductIds = cart.map(item => item.productId);
+    let filtered = products.filter(product => 
+      cartProductIds.includes(product.id)
+    );
+
+    if (activeSearchTerm) {
+      const searchTerm = activeSearchTerm.toLowerCase();
+      filtered = filtered.filter(product => 
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.keywords?.some(keyword => keyword.toLowerCase().includes(searchTerm))
+      );
+    }
+    return filtered;
+  }, [products, cart, activeSearchTerm]);
 
   if (loading) {
     return <div>Loading...</div>
@@ -46,12 +65,22 @@ function CheckoutPage() {
       </div>
 
       <div className="max-w-6xl px-4 sm:px-8 mx-auto mt-32 mb-16">
-        <div className="font-bold text-xl mb-5">Review your order</div>
+        <div className="font-bold text-xl mb-5">
+          {activeSearchTerm 
+            ? `Search Results in Your Cart for "${activeSearchTerm}"`
+            : 'Review your order'}
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-4">
-          <OrderSummary products={products} />
+          <OrderSummary products={filteredCartProducts} />
           <PaymentSummary products={products} />
         </div>
+
+        {filteredCartProducts.length === 0 && activeSearchTerm && (
+          <div className="text-center py-10">
+            No matching products found in your cart for "{activeSearchTerm}"
+          </div>
+        )}
       </div>
     </>
   );

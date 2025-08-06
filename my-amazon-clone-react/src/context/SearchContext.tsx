@@ -4,20 +4,32 @@ import { useDebounce } from '../hooks/useDebounce';
 interface SearchContextType {
   searchTerm: string;
   debouncedSearchTerm: string;
+  activeSearchTerm: string;
   setSearchTerm: (term: string) => void;
+  setActiveSearchTerm: (term: string) => void;
+  clearSearch: () => void;
 }
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
 export function SearchProvider({ children }: { children: ReactNode }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeSearchTerm, setActiveSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  const clearSearch = () => {
+    setSearchTerm('');
+    setActiveSearchTerm('');
+  };
 
   return (
     <SearchContext.Provider value={{ 
-      searchTerm, // Immediate value for the input field
-      debouncedSearchTerm, // Debounced value for search operations
-      setSearchTerm 
+      searchTerm,
+      debouncedSearchTerm,
+      activeSearchTerm,
+      setSearchTerm,
+      setActiveSearchTerm,
+      clearSearch
     }}>
       {children}
     </SearchContext.Provider>

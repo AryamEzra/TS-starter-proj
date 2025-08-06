@@ -57,7 +57,7 @@ function TrackingPage() {
       </>
     );
   }
-
+  
   const orderTime = dayjs(order.orderTime);
   const deliveryTime = dayjs(orderProduct.estimatedDeliveryTime);
   const totalDuration = deliveryTime.diff(orderTime);

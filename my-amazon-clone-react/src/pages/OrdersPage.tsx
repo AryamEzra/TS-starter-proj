@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { useProducts } from '../hooks/useProducts';
@@ -7,11 +7,13 @@ import Spinner from '../components/Spinner';
 import { formatCurrency } from '../utils/money';
 import type { Order, Product } from '../types';
 import { dummyOrders } from '../data/dummyOrders';
+import { useSearch } from '../context/SearchContext';
 
 function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const { products, isLoading: productsLoading } = useProducts();
   const [ordersLoading, setOrdersLoading] = useState(true);
+  const { activeSearchTerm } = useSearch();
 
   useEffect(() => {
     setOrdersLoading(true);
@@ -28,6 +30,22 @@ function OrdersPage() {
     return products.find(p => p.id === productId);
   };
 
+  // Filter orders based on search term
+  const filteredOrders = useMemo(() => {
+    if (!activeSearchTerm) return orders;
+    
+    const searchTerm = activeSearchTerm.toLowerCase();
+    return orders.filter(order => {
+      return order.products.some(orderProduct => {
+        const product = findProductById(orderProduct.productId);
+        return (
+          product?.name.toLowerCase().includes(searchTerm) ||
+          product?.keywords?.some(keyword => keyword.toLowerCase().includes(searchTerm))
+        );
+      });
+    });
+  }, [orders, products, activeSearchTerm]);
+
   if (productsLoading || ordersLoading) {
     return <Spinner />;
   }
@@ -36,13 +54,22 @@ function OrdersPage() {
     <>
       <Header />
       <main className="max-w-4xl mx-auto mt-24 mb-24 px-5">
-        <div className="font-bold text-2xl mb-6">Your Orders</div>
+        <div className="font-bold text-2xl mb-6">
+          {activeSearchTerm 
+            ? `Search Results in Orders for "${activeSearchTerm}"`
+            : 'Your Orders'}
+        </div>
 
         <div className="space-y-6">
-          {orders.length === 0 && !ordersLoading ? (
-            <div className="border border-gray-300 rounded-lg p-6">You have no past orders.</div>
+          {filteredOrders.length === 0 && !ordersLoading ? (
+            <div className="border border-gray-300 rounded-lg p-6">
+              {activeSearchTerm
+                ? `No orders found matching "${activeSearchTerm}"`
+                : 'You have no past orders.'
+              }
+            </div>
           ) : (
-            orders.map(order => (
+            filteredOrders.map(order => (
               <div key={order.id} className="border border-gray-300 rounded-lg">
                 <div className="bg-gray-100 p-6 rounded-t-lg border-b border-gray-300 flex flex-col sm:flex-row justify-between">
                   <div className="flex flex-col sm:flex-row gap-8 mb-4 sm:mb-0">
@@ -65,6 +92,11 @@ function OrdersPage() {
                   {order.products.flatMap(orderProduct => {
                     const product = findProductById(orderProduct.productId);
                     if (!product) return [];
+                    if (activeSearchTerm && 
+                        !product.name.toLowerCase().includes(activeSearchTerm.toLowerCase()) &&
+                        !product.keywords?.some(k => k.toLowerCase().includes(activeSearchTerm.toLowerCase()))) {
+                      return [];
+                    }
 
                     return [
                       <div key={`${product.id}-img`} className="text-center">
