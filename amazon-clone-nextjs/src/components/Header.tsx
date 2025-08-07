@@ -44,10 +44,10 @@ export default function Header() {
             <Image 
               src="/images/icons/cart-icon.png" 
               alt="Cart"
-              width={48}
-              height={48}
+              width={50}
+              height={50}
             />
-            <div className="absolute -top-1 -right-1 bg-orange-400 text-black text-xs font-bold rounded-full min-w-[20px] h-5 flex items-center justify-center px-1">
+            <div className="text-orange-400 text-base font-bold absolute top-0.5 left-4 w-6  text-center">
               {cartQuantity}
             </div>
           </div>
