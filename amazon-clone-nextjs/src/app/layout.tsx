@@ -4,6 +4,7 @@ import './globals.css'
 import { CartProvider } from '../context/CartContext'
 import { SearchProvider } from '../context/SearchContext'
 import Header from '../components/Header'
+import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,6 +29,7 @@ export default function RootLayout({
             </main>
           </CartProvider>
         </SearchProvider>
+        <Toaster />
       </body>
     </html>
   )
