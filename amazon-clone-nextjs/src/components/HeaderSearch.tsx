@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function HeaderSearch() {
   const { searchTerm, setSearchTerm, setActiveSearchTerm } = useSearch();
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setActiveSearchTerm(searchTerm);
   };
@@ -14,7 +14,7 @@ export default function HeaderSearch() {
   return (
     <form 
       onSubmit={handleSearch} 
-      className="flex-1 max-w-2xl mx-4 hidden sm:flex items-center focus-within:ring-2 focus-within:ring-yellow-400 rounded-lg"
+      className="flex-1 max-w-2xl mx-4 flex items-center focus-within:ring-2 focus-within:ring-yellow-400 rounded"
     >
       <input
         className="flex-1 h-10 px-4 rounded-l text-base outline-none text-black"

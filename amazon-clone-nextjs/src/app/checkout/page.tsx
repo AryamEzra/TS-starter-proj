@@ -1,5 +1,5 @@
 import { fetchProducts } from '@/services/api';
-import CheckoutClient from './CheckoutClientPage.tsx';
+import CheckoutClient from './CheckoutClientPage';
 
 export default async function CheckoutPage() {
   const allProducts = await fetchProducts();

@@ -1,10 +1,11 @@
-// layout.tsx
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { CartProvider } from '../context/CartContext'
 import { SearchProvider } from '../context/SearchContext'
 import Header from '../components/Header'
 import { Toaster } from 'sonner'
+import { usePathname } from 'next/navigation'
+import { HeaderWrapper } from './checkout/checkoutHeader'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,15 +19,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  
   return (
     <html lang="en" className={inter.className}>
       <body className="bg-white text-gray-900 antialiased">
         <SearchProvider>
           <CartProvider>
-            <Header />
-            <main className="pt-8">
+            <HeaderWrapper>
               {children}
-            </main>
+            </HeaderWrapper>
           </CartProvider>
         </SearchProvider>
         <Toaster />

@@ -43,33 +43,38 @@ export default function CheckoutClient({ products }: CheckoutClientProps) {
 
   return (
     <>
-      {/* Header section */}
-      <div className="bg-white fixed top-[60px] left-0 right-0 h-15 flex justify-center z-40 px-4 border-b border-gray-200">
-        <div className="w-full max-w-6xl flex items-center">
-          <div className="w-40">
-            <Link href="/">
+      {/* Checkout-specific header */}
+      <header className="fixed top-2 left-0 right-0 z-50 bg-white ">
+        <div className="flex items-center justify-between max-w-6xl px-4 mx-auto h-14">
+          {/* Left section */}
+          <section className="flex items-center w-40">
+            <Link href="/" className="p-1">
               <Image 
-                className="w-24 hidden sm:block" 
+                className="hidden w-24 sm:block" 
                 src="/images/amazon-logo.png" 
                 alt="Amazon" 
                 width={96} 
                 height={28} 
               />
               <Image 
-                className="h-9 sm:hidden" 
+                className="block h-9 sm:hidden" 
                 src="/images/amazon-mobile-logo.png" 
                 alt="Amazon" 
                 width={36} 
                 height={36} 
               />
             </Link>
-          </div>
+          </section>
 
-          <div className="flex-1 text-center text-xl font-medium sm:mx-4">
-            Checkout (<Link className="text-blue-600 hover:text-orange-700" href="/">{cartQuantity} items</Link>)
-          </div>
+          {/* Middle section */}
+          <section className="flex-1 text-center">
+            <span className="text-xl font-bold font ">
+              Checkout (<Link className="text-blue-600 hover:text-orange-700" href="/">{cartQuantity} items</Link>)
+            </span>
+          </section>
 
-          <div className="w-40 flex justify-end">
+          {/* Right section */}
+          <section className="flex justify-end w-40">
             <Image 
               className="h-6" 
               src="/images/icons/checkout-lock-icon.png" 
@@ -77,12 +82,12 @@ export default function CheckoutClient({ products }: CheckoutClientProps) {
               width={24} 
               height={24} 
             />
-          </div>
+          </section>
         </div>
-      </div>
+      </header>
 
       {/* Main content */}
-      <div className="max-w-6xl px-4 sm:px-8 mx-auto mt-32 mb-16">
+      <div className="max-w-6xl px-4 sm:px-8 mx-auto mt-20 mb-16">
         <div className="font-bold text-xl mb-5">
           {activeSearchTerm 
             ? `Search Results in Your Cart for "${activeSearchTerm}"`
