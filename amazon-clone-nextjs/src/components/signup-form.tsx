@@ -30,6 +30,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import { PasswordInput } from "./ui/password-input";
 
 const signInWithGoogle = async () => {
   await authClient.signIn.social({
@@ -119,7 +120,7 @@ export function SignUpForm({
                       <FormItem>
                         <FormLabel>Username</FormLabel>
                         <FormControl>
-                          <Input placeholder="Rengoku" {...field} />
+                          <Input placeholder="Name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -149,7 +150,7 @@ export function SignUpForm({
                         <FormItem>
                           <FormLabel>Password</FormLabel>
                           <FormControl>
-                            <Input placeholder="••••••••" type="password" {...field} />
+                            <PasswordInput placeholder="••••••••" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
