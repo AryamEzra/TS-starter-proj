@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 import HeaderSearch from './HeaderSearch';
 import { useState } from 'react';
+import { LogOut } from 'lucide-react';
+import { Logout } from './logout';
 
 export default function Header() {
   const { cartQuantity } = useCart();
@@ -67,6 +69,9 @@ export default function Header() {
           </div>
           <div className="text-sm font-bold ml-1">Cart</div>
         </Link>
+
+        {/* Desktop Logout Button */}
+        <Logout />
       </div>
 
       {/* Mobile Menu Button - Only visible on mobile */}
@@ -102,6 +107,27 @@ export default function Header() {
           >
             Cart ({cartQuantity})
           </Link>
+
+          {/* Mobile Logout Button */}
+          <button
+            onClick={() => {
+              setIsMenuOpen(false);
+              // You might want to handle logout directly here or refactor
+              // to use the Logout component functionality
+              const handleLogout = async () => {
+                const { authClient } = await import('@/lib/auth-client');
+                await authClient.signOut();
+                const { useRouter } = await import('next/navigation');
+                const router = useRouter();
+                router.push("/");
+              };
+              handleLogout();
+            }}
+            className="w-full text-left px-4 py-2 hover:bg-gray-800 text-white flex items-center"
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
+          </button>
         </div>
       )}
     </header>

@@ -1,18 +1,33 @@
+
 import { SignUpForm } from "@/components/signup-form"
-import { GalleryVerticalEnd } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function SignUpPage() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10">
-      <div className="flex w-full max-w-sm flex-col gap-6">
-        <a href="#" className="flex items-center gap-2 self-center font-medium">
-          <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <GalleryVerticalEnd className="size-4" />
-          </div>
-          Acme Inc.
-        </a>
-        <SignUpForm />
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-lg overflow-hidden">
+        {/* Header */}
+        <div className="p-12 text-center">
+          <Link href="/" className="inline-flex items-center gap-2">
+            <Image 
+              src="/images/amazon-logo.png" 
+              alt="Amazon" 
+              width={120} 
+              height={40} 
+              className="mx-auto"
+            />
+          </Link>   
+        </div>
+        <div>
+          <SignUpForm />
+        </div>
       </div>
     </div>
   )
 }
+
+
+
+
+  

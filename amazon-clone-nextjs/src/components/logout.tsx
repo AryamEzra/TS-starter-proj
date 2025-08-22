@@ -10,12 +10,21 @@ export function Logout() {
 
   const handleLogout = async () => {
     await authClient.signOut();
-    router.push("/dashboard");
+    router.push("/");
   };
 
+  // return (
+  //   <Button variant="outline" onClick={handleLogout}>
+  //     Logout <LogOut className="size-4" />
+  //   </Button>
+  // );
   return (
-    <Button variant="outline" onClick={handleLogout}>
-      Logout <LogOut className="size-4" />
-    </Button>
+    <button
+      onClick={handleLogout}
+      className="flex items-center gap-2 px-4 py-2 rounded-md border border-gray-300 text-white hover:bg-gray-700 transition-colors font-medium shadow-sm"
+    >
+      <LogOut className="size-4 text-white" />
+      Logout
+    </button>
   );
 }
