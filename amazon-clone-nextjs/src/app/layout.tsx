@@ -5,7 +5,7 @@ import { SearchProvider } from '../context/SearchContext'
 import Header from '../components/Header'
 import { Toaster } from 'sonner'
 import { usePathname } from 'next/navigation'
-import { HeaderWrapper } from './checkout/checkoutHeader'
+import { HeaderWrapper } from './dashboard/checkout/checkoutHeader'
 
 const inter = Inter({ subsets: ['latin'] })
 

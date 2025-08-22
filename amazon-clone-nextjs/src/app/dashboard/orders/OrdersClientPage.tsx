@@ -111,7 +111,7 @@ export default function OrdersClientPage({ products, orders }: OrdersClientPageP
                       </div>
 
                       <div className="w-full">
-                        <Link href={`/tracking?orderId=${order.id}&productId=${product.id}`}>
+                        <Link href={`/dashboard/tracking?orderId=${order.id}&productId=${product.id}`}>
                           <button className="bg-white hover:bg-gray-50 border border-gray-300 text-black py-2 px-4 rounded-lg shadow-sm transition-colors duration-200 w-full">
                             Track package
                           </button>

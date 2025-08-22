@@ -36,7 +36,7 @@ export default function TrackingClientPage({ order, product, orderProduct }: Tra
   return (
     <main className="max-w-4xl mx-auto my-8 px-8">
       <div className="order-tracking">
-        <Link className="text-blue-600 hover:text-orange-700 inline-block mb-8" href="/orders">
+        <Link className="text-blue-600 hover:text-orange-700 inline-block mb-8" href="/dashboard/orders">
           &larr; View all orders
         </Link>
 

@@ -19,7 +19,7 @@ export default async function TrackingPage({ searchParams }: TrackingPageProps) 
       <main className="max-w-4xl mx-auto my-24 px-8">
         <h2 className="text-2xl font-bold">Invalid Tracking Request</h2>
         <p className="mt-2">Order ID and Product ID are required.</p>
-        <Link href="/orders" className="text-blue-600 hover:text-orange-700 mt-4 inline-block">
+        <Link href="/dashboard/orders" className="text-blue-600 hover:text-orange-700 mt-4 inline-block">
           View all orders
         </Link>
       </main>
@@ -36,7 +36,7 @@ export default async function TrackingPage({ searchParams }: TrackingPageProps) 
       <main className="max-w-4xl mx-auto my-24 px-8">
         <h2 className="text-2xl font-bold">Tracking Information Not Found</h2>
         <p className="mt-2">The requested order or product could not be found.</p>
-        <Link href="/orders" className="text-blue-600 hover:text-orange-700 mt-4 inline-block">
+        <Link href="/dashboard/orders" className="text-blue-600 hover:text-orange-700 mt-4 inline-block">
           View all orders
         </Link>
       </main>

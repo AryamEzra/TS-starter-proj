@@ -54,7 +54,7 @@ function PaymentSummary({ products }: PaymentSummaryProps) {
       }
       
       clearCart();
-      router.push('/orders');
+      router.push('/dashboard/orders');
 
     } catch (error) {
       console.error('Error placing order:', error);

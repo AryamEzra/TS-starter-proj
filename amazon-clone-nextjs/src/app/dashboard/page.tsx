@@ -10,10 +10,4 @@ export default async function HomePage() {
       <SearchAwareContent products={allProducts} />
     </div>
   );
-
-  // return (
-  //   <div className="max-w-screen-2xl mx-auto">
-  //     <SearchAwareContent products={allProducts} />
-  //   </div>
-  // );
 }

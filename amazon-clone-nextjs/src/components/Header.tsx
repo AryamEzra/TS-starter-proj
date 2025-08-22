@@ -15,7 +15,7 @@ export default function Header() {
       {/* Left Section - Logo */}
       <div className="flex-shrink-0">
         <Link
-          href="/"
+          href="/dashboard"
           className="inline-block p-2 rounded border border-transparent hover:border-white"
         >
           <Image 
@@ -44,7 +44,7 @@ export default function Header() {
       <div className="hidden sm:flex items-center gap-4">
         <Link
           className="text-white hover:border-white p-2 rounded border border-transparent"
-          href="/orders"
+          href="/dashboard/orders"
         >
           <div className="text-xs">Returns</div>
           <div className="text-sm font-bold">& Orders</div>
@@ -52,7 +52,7 @@ export default function Header() {
 
         <Link
           className="text-white hover:border-white p-2 rounded border border-transparent flex items-center relative"
-          href="/checkout"
+          href="/dashboard/checkout"
         >
           <div className="relative">
             <Image 
@@ -90,14 +90,14 @@ export default function Header() {
         <div className="absolute top-full right-0 bg-gray-900 w-48 shadow-lg py-2 mt-1 rounded-sm sm:hidden">
           <Link
             className="block px-4 py-2 hover:bg-gray-800 text-white"
-            href="/orders"
+            href="/dashboard/orders"
             onClick={() => setIsMenuOpen(false)}
           >
             Returns & Orders
           </Link>
           <Link
             className="block px-4 py-2 hover:bg-gray-800 text-white"
-            href="/checkout"
+            href="/dashboard/checkout"
             onClick={() => setIsMenuOpen(false)}
           >
             Cart ({cartQuantity})

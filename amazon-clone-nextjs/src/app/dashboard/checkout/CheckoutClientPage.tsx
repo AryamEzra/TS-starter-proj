@@ -48,7 +48,7 @@ export default function CheckoutClient({ products }: CheckoutClientProps) {
         <div className="flex items-center justify-between max-w-6xl px-4 mx-auto h-14">
           {/* Left section */}
           <section className="flex items-center w-40">
-            <Link href="/" className="p-1">
+            <Link href="/dashboard" className="p-1">
               <Image 
                 className="hidden w-24 sm:block" 
                 src="/images/amazon-logo.png" 
@@ -69,7 +69,7 @@ export default function CheckoutClient({ products }: CheckoutClientProps) {
           {/* Middle section */}
           <section className="flex-1 text-center">
             <span className="text-xl font-bold font ">
-              Checkout (<Link className="text-blue-600 hover:text-orange-700" href="/">{cartQuantity} items</Link>)
+              Checkout (<Link className="text-blue-600 hover:text-orange-700" href="/dashboard">{cartQuantity} items</Link>)
             </span>
           </section>
 
@@ -107,7 +107,7 @@ export default function CheckoutClient({ products }: CheckoutClientProps) {
 
         {cart.length === 0 && (
           <div className="text-center py-10">
-            Your cart is empty. <Link href="/" className="text-blue-600 hover:text-orange-700">Continue shopping</Link>.
+            Your cart is empty. <Link href="/dashboard" className="text-blue-600 hover:text-orange-700">Continue shopping</Link>.
           </div>
         )}
       </div>
