@@ -13,8 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { signIn, signUp } from "@/server/users";
+import { signUp } from "@/server/users"; // Make sure this import is correct
 import { z } from "zod";
 
 import {
@@ -27,7 +26,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { toast } from "sonner";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
@@ -40,11 +39,12 @@ const signInWithGoogle = async () => {
 };
 
 const formSchema = z.object({
+  username: z.string().min(3),
   email: z.string().email(),
   password: z.string().min(6).max(100),
 });
 
-export function LoginForm({
+export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
@@ -56,6 +56,7 @@ export function LoginForm({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      username: "",
       email: "",
       password: "",
     },
@@ -65,7 +66,8 @@ export function LoginForm({
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
 
-    const { success, message } = await signIn(values.email, values.password);
+    // Changed from signIn to signUp since this is a sign-up form
+    const { success, message } = await signUp(values.username, values.email, values.password);
     
     if (success) {
       toast.success(message as string)
@@ -75,16 +77,15 @@ export function LoginForm({
     }
 
     setIsLoading(false);
-    
   }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome back</CardTitle>
+          <CardTitle className="text-xl">Create an account</CardTitle>
           <CardDescription>
-            Login with your Google account
+            Sign up with your Google account or email
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -101,16 +102,30 @@ export function LoginForm({
                       fill="currentColor"
                     />
                   </svg>
-                  Login with Google
+                  Sign up with Google
                 </Button>
               </div>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
-                  Or continue with
+                  Or sign up with email
                 </span>
               </div>
               <div className="grid gap-6">
                 <div className="grid gap-2">
+                  <FormField
+                    control={form.control}
+                    name="username"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Username</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Rengoku" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
                   <FormField
                     control={form.control}
                     name="email"
@@ -140,23 +155,17 @@ export function LoginForm({
                         </FormItem>
                       )}
                     />
-                    <a
-                      href="#"
-                      className="ml-auto text-sm underline-offset-4 hover:underline"
-                    >
-                      Forgot your password?
-                    </a>
                   </div>
                 </div>
                 <Button type="submit" className="w-full"
                   disabled={isLoading}>
-                  {isLoading ? <Loader2 className = 'size-4 animate-spin'  /> : "Login"}
+                  {isLoading ? <Loader2 className = 'size-4 animate-spin'  /> : "Sign Up"}
                 </Button>
               </div>
               <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <a href="#" className="underline underline-offset-4">
-                  Sign up
+                Already have an account?{" "}
+                <a href="/login" className="underline underline-offset-4">
+                  Sign in
                 </a>
               </div>
             </div>

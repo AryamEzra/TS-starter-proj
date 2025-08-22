@@ -20,11 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className="bg-gray-100 text-gray-900 antialiased">
+      <body className="bg-white text-gray-900 antialiased">
         <SearchProvider>
           <CartProvider>
             <Header />
-            <main className="pt-20">
+            <main className="pt-8">
               {children}
             </main>
           </CartProvider>

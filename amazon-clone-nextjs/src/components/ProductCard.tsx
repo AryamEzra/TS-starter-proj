@@ -51,7 +51,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <select 
           value={quantity} 
           onChange={(e) => setQuantity(Number(e.target.value))}
-          className="w-full p-1 bg-gray-100 border border-gray-200 rounded text-sm focus:outline-yellow-400"
+          className="w-full p-1 bg-white border border-gray-200 rounded text-sm focus:outline-yellow-400"
         >
           {[...Array(10)].map((_, i) => (
             <option key={i + 1} value={i + 1}>{i + 1}</option>
