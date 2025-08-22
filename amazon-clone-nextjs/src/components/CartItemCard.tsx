@@ -92,7 +92,7 @@ function CartItemCard({ cartItem, products }: CartItemCardProps) {
         <div className="flex items-start gap-6 md:col-span-2">
           <img 
             className="w-24 h-24 object-contain" 
-            src={matchingProduct.image} 
+            src={`/${matchingProduct.image}`}
             alt={matchingProduct.name}
           />
 
