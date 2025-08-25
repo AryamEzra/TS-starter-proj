@@ -7,7 +7,7 @@ export interface Product {
   id: string;
   image: string;
   name: string;
-  rating: Rating;
+  rating?: Rating;
   priceCents: number;
   keywords: string[];
   type?: string; 
