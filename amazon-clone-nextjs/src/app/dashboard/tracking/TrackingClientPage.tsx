@@ -55,7 +55,7 @@ export default function TrackingClientPage({ order, product, orderProduct }: Tra
           style={{ objectFit: 'contain' }}
         /> */}
         <Image
-          src={product.image.startsWith('http') ? product.image : `/${product.image}`}
+          src={product.image.startsWith('http') ? product.image : `${product.image}`}
           alt={product.name}
           width={110}
           height={110}

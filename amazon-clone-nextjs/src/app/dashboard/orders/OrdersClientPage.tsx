@@ -86,7 +86,7 @@ export default function OrdersClientPage({ products, orders }: OrdersClientPageP
                     <div key={product.id} className="grid grid-cols-1 md:grid-cols-[110px_1fr_220px] gap-6 md:gap-8 items-center">
                       <div className="text-center">
                         <Image 
-                          src={product.image.startsWith('http') ? product.image : `/${product.image}`}
+                          src={product.image.startsWith('http') ? product.image : `${product.image}`}
                           alt={product.name}
                           width={110}
                           height={110}

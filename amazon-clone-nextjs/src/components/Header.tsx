@@ -7,10 +7,12 @@ import HeaderSearch from './HeaderSearch';
 import { useState } from 'react';
 import { LogOut } from 'lucide-react';
 import { Logout } from './logout';
-
+import { ca } from 'zod/v4/locales';
+  
 export default function Header() {
   const { cartQuantity } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  console.log("the cart quantitiy" , cartQuantity)
 
   return (
     <header className="bg-gray-900 text-white fixed top-0 left-0 right-0 h-[60px] flex items-center justify-between px-2 sm:px-4 z-50">
